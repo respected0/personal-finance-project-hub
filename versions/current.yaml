@@ -1,0 +1,40 @@
+# versions/current.yaml
+# Cross-repository version pins for the Personal Finance OS split.
+# Updated after each validated integration milestone.
+
+format_version: "1"
+
+split_status: "initial"
+
+source_baseline:
+  repository: "personal-finance-os"
+  sha: "66868ec39695b1a78d5cfe9937e801392b37ccd4"
+  branch: "main"
+  split_date: "2026-08-06"
+
+repositories:
+  backend:
+    github: "respected0/personal-finance-backend"
+    initial_commit_sha: "PENDING"
+    status: "initial_commit"
+
+  web:
+    github: "respected0/personal-finance-web"
+    initial_commit_sha: "PENDING"
+    status: "initial_commit"
+
+  mobile:
+    github: "respected0/personal-finance-mobile"
+    initial_commit_sha: "PENDING"
+    status: "initial_boundaries"
+    framework_decision: "pending"
+
+  hub:
+    github: "respected0/personal-finance-project-hub"
+    status: "active"
+
+notes: |
+  Initial repository split from PRE-RC monorepo.
+  Integration validation not yet performed.
+  Framework decision for mobile is pending.
+  SHA values will be updated after initial commits are pushed.
