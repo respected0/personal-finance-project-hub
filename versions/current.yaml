@@ -4,7 +4,7 @@
 
 format_version: "1"
 
-split_status: "initial_commit"
+split_status: "initialized"
 
 source_baseline:
   repository: "personal-finance-os"
@@ -15,14 +15,14 @@ source_baseline:
 repositories:
   backend:
     github: "respected0/personal-finance-backend"
-    initial_commit_sha: "44f00f7488c936c2372241460a13ab3b2baafcb6"
-    status: "initial_commit"
+    initial_commit_sha: "e9dfc6238db73a75ab34c1005af4a4e098054d60"
+    status: "initialized"
     visibility: "private"
 
   web:
     github: "respected0/personal-finance-web"
     initial_commit_sha: "a9acd80553c8ed5d8a2a49ab998d4cd4ae732f03"
-    status: "initial_commit"
+    status: "initialized"
     visibility: "private"
 
   mobile:
@@ -34,13 +34,13 @@ repositories:
 
   hub:
     github: "respected0/personal-finance-project-hub"
-    initial_commit_sha: "88254a9d3b5973fa813835a607decb0d2de545ef"
     status: "active"
     visibility: "public"
+
+generated_at: "2026-08-06T01:00:32Z"
 
 notes: |
   Initial repository split from PRE-RC monorepo (2026-08-06).
   All four repositories have initial commits pushed to GitHub.
   Integration validation not yet performed.
   Framework decision for mobile is pending.
-  Smoke tests were run on backend and web where possible.
