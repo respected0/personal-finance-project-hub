@@ -1,41 +1,24 @@
-# Changelog — Personal Finance OS
+# Changelog — Personal Finance OS Project Hub
 
-All notable changes to the project are documented here.
+All notable changes to the integration hub and project structure will be documented in this file.
 
 ---
 
-## [Unreleased] — PRE-RC Repository Split
+## [Unreleased]
 
-### 2026-08-06
+### Added
+- Working foundations for backend, web, mobile, and hub repositories.
+- Canonical version manifest `versions/current.yaml` pinned with initial baseline SHAs.
+- Cross-repository integration test plan (`tests/INTEGRATION_TEST_PLAN.md`).
+- Alpha release manifest `releases/v0.1.0-alpha.1.md` (Status: PLANNED / NOT TESTED).
 
-- Repository split from monorepo `personal-finance-os@66868ec`
-- Four repositories initialized:
-  - `respected0/personal-finance-backend` (private)
-  - `respected0/personal-finance-web` (private)
-  - `respected0/personal-finance-mobile` (private)
-  - `respected0/personal-finance-project-hub` (public, this repository)
-- Backend contains: domain engine, database layer, API handlers, migrations, OpenAPI contract
-- Web contains: UI pages, components, thin BFF auth layer
-- Mobile contains: framework-neutral boundaries (framework decision pending)
-- Hub contains: public project metadata and integration versioning
+---
 
-### PRE-RC Baseline Features (from monorepo)
+## [v0.1.0-baseline] - 2026-08-06
 
-The PRE-RC baseline includes the following implemented features:
-
-- Ledger kernel with double-entry posting engine (p0-a0)
-- Daily core: accounts, transactions, categories, counterparties (p0-a1)
-- Card flows and subscriptions (p0-a2)
-- Sharing and receivables (p0-a2)
-- Reconciliation and reversal (p0-a3)
-- Monthly reports and versioning (p0-a3)
-- Data lifecycle (p0-a3)
-- Budget and goals (p0-b1)
-- Expected payments and investable amounts (p0-b1)
-- Instrument prices (p0-b2)
-- Investment trades and lots (p0-b2)
-- Recommendations engine (p0-b3)
-- Monthly reviews (p0-b3)
-- Auth with MFA/AAL2 and step-up verification
-- RLS-enforced data isolation
-- OpenAPI 3.1 contract
+### Summary
+- Monorepo `personal-finance-os@66868ec39695b1a78d5cfe9937e801392b37ccd4` split into four independent repositories:
+  - `personal-finance-backend` (PRIVATE)
+  - `personal-finance-web` (PRIVATE)
+  - `personal-finance-mobile` (PRIVATE)
+  - `personal-finance-project-hub` (PUBLIC)

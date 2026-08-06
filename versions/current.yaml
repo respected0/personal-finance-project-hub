@@ -1,46 +1,53 @@
 # versions/current.yaml
-# Cross-repository version pins for the Personal Finance OS split.
-# Updated after each validated integration milestone.
+# Single canonical cross-repository version manifest for Personal Finance OS
 
-format_version: "1"
-
-split_status: "initialized"
+format_version: "1.0"
+split_status: "completed"
 
 source_baseline:
   repository: "personal-finance-os"
-  sha: "66868ec39695b1a78d5cfe9937e801392b37ccd4"
+  commit: "66868ec39695b1a78d5cfe9937e801392b37ccd4"
   branch: "main"
   split_date: "2026-08-06"
 
-repositories:
+components:
   backend:
-    github: "respected0/personal-finance-backend"
-    initial_commit_sha: "e9dfc6238db73a75ab34c1005af4a4e098054d60"
-    status: "initialized"
-    visibility: "private"
+    repository: "respected0/personal-finance-backend"
+    url: "https://github.com/respected0/personal-finance-backend"
+    visibility: "PRIVATE"
+    commit: "c055d06291c9d20d9d0b4090cc9208f3af65f5ae"
+    branch: "main"
+    status: "working_foundation_established"
 
   web:
-    github: "respected0/personal-finance-web"
-    initial_commit_sha: "a9acd80553c8ed5d8a2a49ab998d4cd4ae732f03"
-    status: "initialized"
-    visibility: "private"
+    repository: "respected0/personal-finance-web"
+    url: "https://github.com/respected0/personal-finance-web"
+    visibility: "PRIVATE"
+    commit: "c7a8c2f563c79720faf56120e595ff0ef2e2c64b"
+    branch: "main"
+    status: "working_foundation_established"
 
   mobile:
-    github: "respected0/personal-finance-mobile"
-    initial_commit_sha: "06db7ade7a6bee5dab9472da8434991a4a0c172b"
-    status: "initial_boundaries"
-    framework_decision: "pending"
-    visibility: "private"
+    repository: "respected0/personal-finance-mobile"
+    url: "https://github.com/respected0/personal-finance-mobile"
+    visibility: "PRIVATE"
+    commit: "493c27bbf58746975a46fb0f7836f890187e4e87"
+    branch: "main"
+    status: "architecture_boundaries_established"
+    framework_status: "pending"
 
-  hub:
-    github: "respected0/personal-finance-project-hub"
-    status: "active"
-    visibility: "public"
+validations:
+  integration_validation: "not_run"
+  e2e_validation: "not_run"
 
-generated_at: "2026-08-06T01:00:32Z"
+release:
+  target_version: "v0.1.0-alpha.1"
+  status: "planned"
+
+generated_at: "2026-08-06T01:18:00Z"
 
 notes: |
-  Initial repository split from PRE-RC monorepo (2026-08-06).
-  All four repositories have initial commits pushed to GitHub.
-  Integration validation not yet performed.
-  Framework decision for mobile is pending.
+  Repository split baseline updated with working foundation commits for backend, web, and mobile (2026-08-06).
+  Integration validation and E2E testing have not yet been executed.
+  Alpha release status is planned / not tested.
+  Framework decision for mobile application remains pending.
