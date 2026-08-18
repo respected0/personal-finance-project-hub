@@ -4,3 +4,8 @@
 Thumbs.db
 .env
 .env.*
+
+# Integration - local cloned repos (do not push)
+integration/backend-web/
+integration/backend-mobil/
+integration/pull-all.sh
