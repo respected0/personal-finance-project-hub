@@ -15,17 +15,17 @@ components:
     repository: "respected0/personal-finance-backend"
     url: "https://github.com/respected0/personal-finance-backend"
     visibility: "PRIVATE"
-    commit: "c055d06291c9d20d9d0b4090cc9208f3af65f5ae"
+    commit: "92b3064a3ebfa930bd6d37d771483d88fea5ee64"
     branch: "main"
-    status: "working_foundation_established"
+    status: "rc_hardening_completed"
 
   web:
     repository: "respected0/personal-finance-web"
     url: "https://github.com/respected0/personal-finance-web"
     visibility: "PRIVATE"
-    commit: "c7a8c2f563c79720faf56120e595ff0ef2e2c64b"
+    commit: "3382755cd84e0bebd108e3a74b0594ebb0b721e0"
     branch: "main"
-    status: "working_foundation_established"
+    status: "alpha_integration_verified"
 
   mobile:
     repository: "respected0/personal-finance-mobile"
@@ -37,17 +37,16 @@ components:
     framework_status: "pending"
 
 validations:
-  integration_validation: "not_run"
-  e2e_validation: "not_run"
+  integration_validation: "passed"
+  e2e_validation: "passed"
 
 release:
   target_version: "v0.1.0-alpha.1"
-  status: "planned"
+  status: "verified_pass"
 
-generated_at: "2026-08-06T01:18:00Z"
+generated_at: "2026-08-20T01:06:00Z"
 
 notes: |
-  Repository split baseline updated with working foundation commits for backend, web, and mobile (2026-08-06).
-  Integration validation and E2E testing have not yet been executed.
-  Alpha release status is planned / not tested.
-  Framework decision for mobile application remains pending.
+  Backend RC hardening and Web-to-Backend Alpha integration verified (2026-08-20).
+  E2E test suite validated across 12 core financial domain modules (Auth, Accounts, Ledger, Cards, Planning, Investments, Subscriptions, Sharing, Reconciliation, Reports, Data Export, Rate Limiting).
+  Mobile framework selection and mobile integration validation remain queued for subsequent milestone.
