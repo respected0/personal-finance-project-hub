@@ -31,7 +31,7 @@ components:
     repository: "respected0/personal-finance-mobile"
     url: "https://github.com/respected0/personal-finance-mobile"
     visibility: "PRIVATE"
-    commit: "493c27bbf58746975a46fb0f7836f890187e4e87"
+    commit: "f3013253b22cfc40ec4764ce5f1e8fe5c56c2f7b"
     branch: "main"
     status: "architecture_boundaries_established"
     framework_status: "pending"
