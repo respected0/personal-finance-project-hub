@@ -15,7 +15,7 @@ components:
     repository: "respected0/personal-finance-backend"
     url: "https://github.com/respected0/personal-finance-backend"
     visibility: "PRIVATE"
-    commit: "92b3064a3ebfa930bd6d37d771483d88fea5ee64"
+    commit: "a37b5736173a116b40283cf2559e078efceceb7d"
     branch: "main"
     status: "rc_hardening_completed"
 
