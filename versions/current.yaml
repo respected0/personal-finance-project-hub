@@ -23,9 +23,9 @@ components:
     repository: "respected0/personal-finance-web"
     url: "https://github.com/respected0/personal-finance-web"
     visibility: "PRIVATE"
-    commit: "3382755cd84e0bebd108e3a74b0594ebb0b721e0"
+    commit: "114ea475ea7f4dbe7520e53a25690224bfd27d75"
     branch: "main"
-    status: "alpha_integration_verified"
+    status: "production_deployed_and_verified"
 
   mobile:
     repository: "respected0/personal-finance-mobile"
