@@ -1,17 +1,18 @@
-# Releases — Kişisel Finans İşletim Sistemi
+# Releases — Personal Finance OS
 
-Bu doküman, çapraz-repository entegrasyon sürümlerinin doğrulama durumlarını ve sabitlenmiş bileşen SHA değerlerini kaydeder.
-
----
-
-## Release Geçmişi ve Planlanan Sürümler
-
-| Hub Sürümü | Backend SHA / Sürüm | Web SHA / Sürüm | Mobil SHA / Sürüm | Sonuç | Tarih |
-|---|---|---|---|---|---|
-| `v0.1.0-alpha.1` | `92b3064` | `3382755` | `493c27b` | **VERIFIED / PASS** | 2026-08-20 |
+This document serves as the index for cross-repository integration releases.
 
 ---
 
-## Sürüm Notları
+## Release History
 
-- **`v0.1.0-alpha.1`**: Backend RC Hardening (Log Redaction, 40 Tablo RLS Matrisi, Destructive Migration Scanner, Sliding Window Rate Limiter, OpenAPI TypeScript Client Generation) tamamlandı. Web & Backend Alpha entegrasyonu (12 modül E2E akışı) doğrulanarak release statüsü **`VERIFIED / PASS`** olarak güncellendi. Detaylar için [releases/v0.1.0-alpha.1.md](./releases/v0.1.0-alpha.1.md) dokümanını inceleyin.
+| Release Version | Date | Status | Release Record | Scope Summary |
+|---|---|---|---|---|
+| `v0.1.0-alpha.1` | 2026-08-20 | **VERIFIED / PASS** | [releases/v0.1.0-alpha.1.md](./releases/v0.1.0-alpha.1.md) | Initial Alpha 1 release verifying Backend RC hardening and Web-to-Backend integration across 12 financial modules. |
+
+---
+
+## Release Governance
+
+- Specific component commit pins, test results, and limitations are recorded immutably in individual files under `releases/`.
+- Active integration candidates and working pins are managed in [versions/current.yaml](./versions/current.yaml).

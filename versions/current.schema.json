@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Personal Finance OS Current Version Manifest Schema",
+  "description": "Schema for validating versions/current.yaml in personal-finance-project-hub",
+  "type": "object",
+  "required": [
+    "format_version",
+    "components",
+    "release"
+  ],
+  "properties": {
+    "format_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "split_status": {
+      "type": "string",
+      "enum": ["completed", "in_progress", "pending"]
+    },
+    "components": {
+      "type": "object",
+      "required": ["backend", "web", "mobile"],
+      "additionalProperties": false,
+      "properties": {
+        "backend": { "$ref": "#/$defs/component" },
+        "web": { "$ref": "#/$defs/component" },
+        "mobile": { "$ref": "#/$defs/component" }
+      }
+    },
+    "validations": {
+      "type": "object",
+      "properties": {
+        "integration_validation": { "type": "string" },
+        "e2e_validation": { "type": "string" }
+      }
+    },
+    "release": {
+      "type": "object",
+      "required": ["target_version", "status"],
+      "properties": {
+        "target_version": {
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "in_progress",
+            "candidate",
+            "verified_pass",
+            "verified_fail",
+            "released"
+          ]
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["repository", "url", "commit", "branch", "status"],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["PUBLIC", "PRIVATE"]
+        },
+        "framework_status": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

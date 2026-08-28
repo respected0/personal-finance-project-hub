@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# .githooks/pre-push
+# Fast local pre-push verification gate for personal-finance-project-hub
+
+set -e
+
+echo "🚀 [pre-push] Running fast local verification gate..."
+node scripts/verify-quick.mjs
+echo "✅ [pre-push] Fast local verification passed. Proceeding with push."

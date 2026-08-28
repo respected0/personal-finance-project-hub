@@ -4,49 +4,43 @@
 format_version: "1.0"
 split_status: "completed"
 
-source_baseline:
-  repository: "personal-finance-os"
-  commit: "66868ec39695b1a78d5cfe9937e801392b37ccd4"
-  branch: "main"
-  split_date: "2026-08-06"
-
 components:
   backend:
     repository: "respected0/personal-finance-backend"
     url: "https://github.com/respected0/personal-finance-backend"
     visibility: "PRIVATE"
-    commit: "83e3e0a7f14b60098bc19d3fec86111f18544983"
+    commit: "83e3e0a82b266a94bc4f3ad1408fee134429317a"
     branch: "main"
     status: "production_deployed_and_verified"
 
   web:
-    repository: "respected0/personal-finance-web"
-    url: "https://github.com/respected0/personal-finance-web"
+    repository: "eyupturkoglu/personal-finance-web"
+    url: "https://github.com/eyupturkoglu/personal-finance-web"
     visibility: "PRIVATE"
-    commit: "4843f4787a71879796e625a2df465d3ec6e2ec90"
+    commit: "4843f47b262c7d5ad9bb7fc73a2c8f1dbf809504"
     branch: "main"
     status: "production_deployed_and_verified"
 
   mobile:
-    repository: "respected0/personal-finance-mobile"
-    url: "https://github.com/respected0/personal-finance-mobile"
+    repository: "Shiize/personal-finance-mobile"
+    url: "https://github.com/Shiize/personal-finance-mobile"
     visibility: "PRIVATE"
-    commit: "ad43b7858c67be8eb44dc8bc228c2dd1aa618055"
+    commit: "ad43b786cff3a2546bf00b291848b90d9b5da15b"
     branch: "main"
     status: "architecture_boundaries_established"
     framework_status: "pending"
 
 validations:
-  integration_validation: "passed"
-  e2e_validation: "passed"
+  integration_validation: "in_progress"
+  e2e_validation: "in_progress"
 
 release:
-  target_version: "v0.1.0-alpha.1"
-  status: "verified_pass"
+  target_version: "0.1.0-alpha.2"
+  status: "candidate"
 
-generated_at: "2026-08-20T01:06:00Z"
+generated_at: "2026-08-20T03:45:00Z"
 
 notes: |
-  Backend RC hardening and Web-to-Backend Alpha integration verified (2026-08-20).
-  E2E test suite validated across 12 core financial domain modules (Auth, Accounts, Ledger, Cards, Planning, Investments, Subscriptions, Sharing, Reconciliation, Reports, Data Export, Rate Limiting).
-  Mobile framework selection and mobile integration validation remain queued for subsequent milestone.
+  Integration candidate set staged for subsequent alpha cycle (0.1.0-alpha.2).
+  Includes Backend production deployment, Web full OpenAPI client types, and Mobile architectural boundaries with bundled OpenAPI contracts.
+  Historical release snapshot for 0.1.0-alpha.1 remains archived under releases/v0.1.0-alpha.1.md.

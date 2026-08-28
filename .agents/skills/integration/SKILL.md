@@ -2,43 +2,53 @@
 name: integration-test
 description: >-
   Integration test skill'i. Backend + Web veya Backend + Mobil entegrasyonlarını
-  test ederken, servisleri birlikte ayağa kaldırırken veya cross-repo
-  uyumluluk kontrolü yaparken kullanılır.
+  test ederken, servisleri birlikte ayağa kaldırırken, cross-repo uyumluluk kontrolü
+  yaparken veya versions/current.yaml manifestini güncellerken kullanılır.
 ---
 
-# Integration Test Skill
+# Integration & Release Workflow Skill
 
-## Yapı
+Bu skill, `personal-finance-project-hub` reposunda cross-repository entegrasyon doğrulaması, commit sabitleme ve release hazırlığı yaparken izlenecek adımları tanımlar.
 
-```
+---
+
+## 1. Çalışma Mantığı ve Sınırlar
+
+- **Kendi Sorumluluk Alanında Kal**: Hub içinde backend/web/mobil domain kodu yamalama. Hata varsa ilgili repoya commit SHA ile bildir.
+- **Manifest vs Sibling HEAD**: Sibling repoya yeni commit geldiğinde `versions/current.yaml` otomatik güncellenmez. Manifest yalnızca bilinçli entegrasyon/release çalışmasında yeni commit pinlerine geçirilir.
+- **İki Aşamalı Doğrulama**:
+  - `pnpm manifest:check` (Hızlı deterministik format/şema kontrolü)
+  - `pnpm manifest:verify-refs` (Lokal sibling repolarda commit existence kontrolü)
+
+---
+
+## 2. Lokal Entegrasyon Çalışma Ortamı
+
+```text
 integration/
 ├── backend-web/
-│   ├── backend → symlink → personal-finance-backend
-│   └── web     → symlink → personal-finance-web
-├── backend-mobil/
-│   ├── backend → symlink → personal-finance-backend
-│   └── mobile  → symlink → personal-finance-mobile
-└── pull-all.sh          → tüm repoları günceller
+│   ├── backend → symlink → ../../../personal-finance-backend
+│   └── web     → symlink → ../../../personal-finance-web
+└── backend-mobile/
+    ├── backend → symlink → ../../../personal-finance-backend
+    └── mobile  → symlink → ../../../personal-finance-mobile
 ```
 
-## Güncelleme
+*Not: Symlink klasörleri `.gitignore` içindedir, asla commit edilmez.*
 
-Tüm repoları güncellemek için:
+---
 
-```bash
-cd integration && ./pull-all.sh
-```
+## 3. Entegrasyon Doğrulama Adımları
 
-## Entegrasyon Testi Akışı
-
-1. `pull-all.sh` ile tüm repoları güncelle
-2. Backend'i ayağa kaldır (backend klasöründe)
-3. Frontend'i ayağa kaldır (web veya mobile klasöründe)
-4. API endpoint'lerini frontend üzerinden test et
-5. Sonuçları `tests/` klasörüne kaydet
-
-## Dikkat Edilecekler
-
-- Symlink'ler üzerinden dosya düzenlersen **orijinal repo** değişir
-- Backend'de yaptığın değişiklik hem backend-web hem backend-mobil'de yansır
-- Her entegrasyon testinden önce `pull-all.sh` çalıştır
+1. **Repoları Güncelle**: İlgili sibling repolarda test edilecek commit'leri checkout et.
+2. **Backend'i Ayağa Kaldır**: Backend API sunucusunu başlat (`pnpm dev` veya test modu).
+3. **Frontend'i Ayağa Kaldır**: Web (`pnpm dev`) veya Mobil uygulamasını başlat.
+4. **API & Entegrasyon Senaryolarını Çalıştır**: [tests/INTEGRATION_TEST_PLAN.md](../../../tests/INTEGRATION_TEST_PLAN.md) içerisindeki senaryoları doğrula.
+5. **Manifest'i Güncelle**: Testler başarılı olduğunda `versions/current.yaml` dosyasındaki commit SHA'larını güncelle.
+6. **Doğrulama Komutlarını Çalıştır**:
+   ```bash
+   pnpm manifest:check
+   pnpm manifest:verify-refs
+   pnpm verify:quick
+   ```
+7. **Release Kaydı Oluştur**: Bir release tamamlandığında `releases/vX.Y.Z[-prerelease].md` dosyasını oluştur ve `RELEASES.md` indeksini güncelle.

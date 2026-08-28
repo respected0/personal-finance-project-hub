@@ -1,11 +1,26 @@
-# Hub-specific ignores
+# Node & Tooling
+node_modules/
+dist/
+coverage/
 *.log
+pnpm-debug.log*
+
+# OS & Editor
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+
+# Security & Secrets
 .env
 .env.*
+*.pem
+*.key
+*.p12
+*.pfx
 
 # Integration - local cloned repos (do not push)
 integration/backend-web/
 integration/backend-mobil/
+integration/backend-mobile/
 integration/pull-all.sh

@@ -1,48 +1,40 @@
 # Security and Privacy — Personal Finance OS
 
-Public-safe security overview. No implementation details that could create attack surfaces are included.
+Public security posture and privacy overview. No sensitive implementation details or attack surface data are included in this public repository.
 
 ---
 
-## Security Model
+## 1. Public Repository Security Boundaries
 
-The Personal Finance OS is a personal financial management system. Security is a first-class concern.
-
-### Authentication
-
-- User authentication uses Supabase Auth
-- Multi-Factor Authentication (MFA/TOTP) is supported and required for sensitive operations
-- Sessions use HttpOnly cookies managed server-side
-- Step-up authentication (fresh TOTP verification) is required for high-impact actions
-
-### Authorization
-
-- All data access is enforced by Row-Level Security (RLS) policies at the PostgreSQL layer
-- RLS ensures users can only access their own data
-- API-level authorization checks are applied independently of database RLS
-
-### Data Encryption
-
-- Sensitive fields (e.g., account names, counterparty information) are encrypted at the application layer
-- Encryption uses AES-256-GCM
-- Encryption keys are managed outside the database
-
-### Transport Security
-
-- All communication uses HTTPS
-- CSRF protection is enforced for write operations
-- Same-origin validation is applied on sensitive API endpoints
+The `personal-finance-project-hub` repository operates under strict public data isolation rules:
+- **Zero Real Financial Data**: No live financial figures, bank statements, or user data are stored.
+- **Zero Application Secrets**: No `.env` files, production API tokens, database connection strings, JWTs, or private certificates exist in this repository.
+- **Zero Private Domain Code**: All business logic, database migrations, and proprietary algorithms reside exclusively in private sibling repositories. Machine-enforced via `pnpm boundaries:check`.
 
 ---
 
-## Privacy
+## 2. Security Controls in Hub
 
-- User financial data is never stored in logs
-- Log redaction is enforced at the observability layer
-- No real financial data is used in test fixtures
+| Control | Mechanism | Enforcement Gate |
+|---|---|---|
+| **Local Pre-Push Secret Scanning** | Regex-based scanner for API keys, private keys, PATs, and bearer tokens (`scripts/check-secrets.mjs`) | `.githooks/pre-push` |
+| **CI Full-History Secret Scanning** | Gitleaks scanning every commit across the entire Git history (`fetch-depth: 0`) | GitHub Actions CI (`.github/workflows/security.yml`) |
+| **Manifest & Release Integrity** | Strict SemVer schema validation and SHA format enforcement (`scripts/check-manifest.mjs`, `scripts/check-releases.mjs`) | Local pre-push & GitHub CI |
+| **Zero Domain Code Guard** | Path and migration scanner preventing domain implementation leakage (`scripts/check-hub-boundaries.mjs`) | Local pre-push & GitHub CI |
+| **Documentation Truth Verification** | Automated scanner verifying canonical URLs, internal links, and absence of dead references (`scripts/check-docs.mjs`) | Local pre-push & GitHub CI |
 
 ---
 
-## Responsible Disclosure
+## 3. Ecosystem-Wide Security Architecture (High-Level)
 
-This is a personal project. If you find a security issue, please contact the maintainer directly.
+Across the private Personal Finance OS backend and client applications:
+- **Authentication**: Powered by Supabase Auth with mandatory Multi-Factor Authentication (AAL2 TOTP) on sensitive actions.
+- **Authorization**: Row-Level Security (RLS) policies at the PostgreSQL database layer prevent cross-tenant data access.
+- **Data Encryption**: Application-layer AES-256-GCM encryption secures high-sensitivity fields before database persistence.
+- **Observability Redaction**: High-level log redaction filters PII, auth headers, and financial tokens prior to telemetry ingestion.
+
+---
+
+## 4. Responsible Disclosure
+
+If you discover a potential security vulnerability in any Personal Finance OS repository, please report it directly to the maintainers rather than opening a public issue.

@@ -1,13 +1,12 @@
 # Integration Guidelines — Personal Finance OS
 
-Bu dizin, Personal Finance OS projesinin çapraz-repository entegrasyon ilkelerini ve süreçlerini tanımlar.
+This directory documents the integration workflow and local test environment setup for the Personal Finance OS ecosystem.
 
 ---
 
-## Entegrasyon Çalışma İlkeleri
+## Core Principles
 
-1. **Alanlar Kendi Repository'lerinde Doğrulanır**: Backend, web ve mobil ekipleri öncelikle kendi repository'lerinde çalışan ve doğrulanmış sürümler üretir.
-2. **Hub Sabit SHA veya Tag Kullanır**: Hub entegrasyon sürecinde bileşenlerin rastgele kodlarını değil, `versions/current.yaml` dosyasında sabitlenmiş commit SHA veya release tag değerlerini kullanır.
-3. **Hub Alan Kodunu Kopyalamaz veya Yamalamaz**: Entegrasyon sırasında bir hata tespit edilirse, kod Hub içinde düzeltilmez; hata kanıtlarıyla birlikte ilgili domain repository'sine bildirilir.
-4. **Gereksiz Otomasyon Kurulmaz**: İlk aşamada karmaşık CI/CD otomasyon hatları yerine net ve kontrol edilebilir manuel/yarı-otomatize entegrasyon adımları uygulanır.
-5. **Kontrollü Yürütme**: Entegrasyon doğrulama süreçleri, bileşenlerin bağımsız ortam testleri tamamlandıktan sonra kontrollü bir şekilde çalıştırılır.
+1. **Domains Verified in Home Repositories**: Backend, Web, and Mobile teams develop and verify changes within their respective repositories.
+2. **Hub Uses Explicit Commit Pins**: Hub integration tracking is anchored on explicit 40-character commit SHAs recorded in [versions/current.yaml](../versions/current.yaml).
+3. **Zero Domain Code in Hub**: Any defect identified during integration testing is reported with commit SHA evidence to the responsible repository. Never patched in Hub.
+4. **Controlled Release Workflow**: Complete workflows for local sibling symlinks and release verification gates are documented in [docs/operations/release-and-integration.md](../docs/operations/release-and-integration.md).
