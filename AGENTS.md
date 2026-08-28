@@ -62,7 +62,7 @@ Evaluate whether the task impacts the ecosystem release version:
 - `PRE-RELEASE ADVANCE`: Progressing through `alpha.N` → `beta.N` → `rc.N`.
 
 ### 7. Repository Map Impact
-If any file is created, moved, or deleted, update [docs/REPOSITORY_MAP.md](file:///home/furkan/projects/kisisel-finans-os-bootstrap/personal-finance-project-hub/docs/REPOSITORY_MAP.md) in the exact same task and verify with `pnpm repo-map:check`.
+If any file is created, moved, or deleted, update [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md) in the exact same task and verify with `pnpm repo-map:check`.
 
 ---
 
@@ -86,4 +86,4 @@ If any file is created, moved, or deleted, update [docs/REPOSITORY_MAP.md](file:
 
 - `integration/backend-web/` and `integration/backend-mobile/` contain local symlinks to sibling repositories for side-by-side integration testing.
 - These folders are listed in `.gitignore` and must never be committed.
-- See [docs/operations/release-and-integration.md](file:///home/furkan/projects/kisisel-finans-os-bootstrap/personal-finance-project-hub/docs/operations/release-and-integration.md) for complete workflows.
+- See [docs/operations/release-and-integration.md](docs/operations/release-and-integration.md) for complete workflows.

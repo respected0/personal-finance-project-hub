@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
-import { execSync } from 'node:child_process';
 
 const FORBIDDEN_STRINGS = [
   'github.com/respected0/personal-finance-web',
@@ -59,19 +58,19 @@ export function validateDocs(rootDir = process.cwd()) {
         continue;
       }
 
-      // Handle file:/// links
-      let cleanHref = href;
-      if (cleanHref.startsWith('file:///')) {
-        cleanHref = cleanHref.replace('file://', '');
+      // Disallow non-portable machine-specific file:/// or absolute filesystem paths
+      if (href.startsWith('file:///') || /^\/(home|Users|runner|root|tmp)/i.test(href)) {
+        errors.push(`[${relPath}] Non-portable machine-specific link forbidden: "${href}". Use relative markdown links.`);
+        continue;
       }
 
       // Remove anchor part
-      const [targetFilePath] = cleanHref.split('#');
+      const [targetFilePath] = href.split('#');
       if (!targetFilePath) continue;
 
       let resolvedTarget;
       if (path.isAbsolute(targetFilePath)) {
-        resolvedTarget = targetFilePath;
+        resolvedTarget = path.resolve(rootDir, targetFilePath.slice(1));
       } else {
         resolvedTarget = path.resolve(path.dirname(filePath), targetFilePath);
       }
