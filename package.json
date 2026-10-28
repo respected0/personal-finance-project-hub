@@ -1,0 +1,9 @@
+{
+  "name": "personal-finance-project-hub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-hub.mjs && node --test",
+    "test": "node --test"
+  }
+}
